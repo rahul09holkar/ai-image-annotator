@@ -5,7 +5,7 @@ RUN apt-get update && apt-get -y install git && rm -rf /var/lib/apt/lists/*
 COPY ./ /make-sense
 
 RUN cd /make-sense && \
-  npm install
+ npm install --save-exact @tensorflow/tfjs-node@3.18.0 --legacy-peer-deps
 
 WORKDIR /make-sense
 
