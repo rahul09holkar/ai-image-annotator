@@ -71,7 +71,6 @@ class ImagePreview extends React.Component<IProps, IState> {
     private loadImage = async (imageData: ImageData, isScrolling: boolean) => {
         if (imageData.loadStatus) {
             const image = ImageRepository.getById(imageData.id);
-            debugger
             if (this.state.image !== image) {
                 this.setState({ image });
             }

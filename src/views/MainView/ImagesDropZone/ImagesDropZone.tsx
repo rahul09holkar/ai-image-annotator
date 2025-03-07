@@ -42,8 +42,7 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
   } as DropzoneOptions);
 
   const preloadImages = async (imageUrls: string[]) => {
-    
-    const imageDataArray: ImageData[] = await Promise.all(
+    const imageDataArray: File[] = await Promise.all(
       imageUrls.map(async (url, index) => {
         const response = await fetch(url);
         const blob = await response.blob();
@@ -51,20 +50,7 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
           type: blob.type,
         });
 
-        return {
-          id: `preloaded-${index}`,
-          fileData: file,
-          loadStatus: true,
-          labelRects: [],
-          labelPoints: [],
-          labelLines: [],
-          labelPolygons: [],
-          labelNameIds: [],
-          isVisitedByYOLOObjectDetector: false,
-          isVisitedBySSDObjectDetector: false,
-          isVisitedByPoseDetector: false,
-          isVisitedByRoboflowAPI: false,
-        };
+        return file;
       })
     );
     return imageDataArray;
@@ -73,13 +59,19 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
   useEffect(() => {
     if (preloadedImages.length > 0) {
       preloadImages(preloadedImages).then((imageDataArray) => {
-        props.addImageDataAction(imageDataArray);
-        props.updateActiveImageIndexAction(0);
+        debugger;
         props.updateProjectDataAction({
           ...props.projectData,
           type: ProjectType.OBJECT_DETECTION,
         });
-        startEditor(ProjectType.OBJECT_DETECTION);
+        props.updateActiveImageIndexAction(0);
+
+        props.addImageDataAction(
+          imageDataArray.map((file: File) =>
+            ImageDataUtil.createImageDataFromFileData(file)
+          )
+        );
+        props.updateActivePopupTypeAction(PopupWindowType.INSERT_LABEL_NAMES);
       });
     }
   }, []);
@@ -87,6 +79,7 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
   const startEditor = (projectType: ProjectType) => {
     if (acceptedFiles.length > 0) {
       const files = sortBy(acceptedFiles, (item: File) => item.name);
+      debugger;
       props.updateProjectDataAction({
         ...props.projectData,
         type: projectType,
