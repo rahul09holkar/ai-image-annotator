@@ -39,7 +39,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
         <div className='TopNavigationBar'>
             <StateBar/>
             <div className='TopNavigationBarWrapper'>
-                <div className='NavigationBarGroupWrapper'>
+                {/* <div className='NavigationBarGroupWrapper'>
                     <div
                         className='Header'
                         onClick={closePopup}
@@ -51,7 +51,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                         />
                         Make Sense
                     </div>
-                </div>
+                </div> */}
                 <div className='NavigationBarGroupWrapper'>
                     <DropDownMenu/>
                 </div>
@@ -64,14 +64,14 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                         onFocus={onFocus}
                     />
                 </div>
-                <div className='NavigationBarGroupWrapper'>
+                {/* <div className='NavigationBarGroupWrapper'>
                     <ImageButton
                         image={'ico/github-logo.png'}
                         imageAlt={'github-logo.png'}
                         buttonSize={{width: 30, height: 30}}
                         href={Settings.GITHUB_URL}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

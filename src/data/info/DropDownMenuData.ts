@@ -69,29 +69,29 @@ export const DropDownMenuData: DropDownMenuNode[] = [
             },
         ]
     },
-    {
-        name: 'Community',
-        imageSrc: 'ico/plant.png',
-        imageAlt: 'community',
-        disabled: false,
-        children: [
-            {
-                name: 'Documentation',
-                description: 'Read more about Make Sense',
-                imageSrc: 'ico/documentation.png',
-                imageAlt: 'documentation',
-                disabled: false,
-                onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
-            },
-            {
-                name: 'Bugs and Features',
-                description: 'Report a bug or propose a new feature',
-                imageSrc: 'ico/bug.png',
-                imageAlt: 'bug',
-                disabled: false,
-                onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
-            }
-        ]
-    }
+    // {
+    //     name: 'Community',
+    //     imageSrc: 'ico/plant.png',
+    //     imageAlt: 'community',
+    //     disabled: false,
+    //     children: [
+    //         {
+    //             name: 'Documentation',
+    //             description: 'Read more about Make Sense',
+    //             imageSrc: 'ico/documentation.png',
+    //             imageAlt: 'documentation',
+    //             disabled: false,
+    //             onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
+    //         },
+    //         {
+    //             name: 'Bugs and Features',
+    //             description: 'Report a bug or propose a new feature',
+    //             imageSrc: 'ico/bug.png',
+    //             imageAlt: 'bug',
+    //             disabled: false,
+    //             onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
+    //         }
+    //     ]
+    // }
 ]
 
