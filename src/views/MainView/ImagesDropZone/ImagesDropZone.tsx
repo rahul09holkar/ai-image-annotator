@@ -31,13 +31,7 @@ interface IProps {
 }
 
 const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
-  const [preloadedImages, setPreloadedImages] = useState<string[]>([
-    "https://adon-dev-user-images.s3.ap-south-1.amazonaws.com/2c12bdf1-81e7-45fd-a5b6-dd6c716d8cd7/2025/3/Back/CAP5732379718673158250.jpg",
-    "https://adon-dev-user-images.s3.ap-south-1.amazonaws.com/2c12bdf1-81e7-45fd-a5b6-dd6c716d8cd7/2025/3/Front/CAP6573624519915483063.jpg",
-    "https://adon-dev-user-images.s3.ap-south-1.amazonaws.com/2c12bdf1-81e7-45fd-a5b6-dd6c716d8cd7/2025/3/Left/CAP5438785834296558944.jpg",
-    "https://adon-dev-user-images.s3.ap-south-1.amazonaws.com/2c12bdf1-81e7-45fd-a5b6-dd6c716d8cd7/2025/3/Right/CAP13681141411786963.jpg",
-    "https://adon-dev-user-images.s3.ap-south-1.amazonaws.com/2c12bdf1-81e7-45fd-a5b6-dd6c716d8cd7/2025/3/Top/CAP7000894386094613837.jpg",
-  ]);
+  const [preloadedImages, setPreloadedImages] = useState<string[]>([]);
   const [loading, setIsLoading] = useState<boolean>(false);
   const [imageUrls, setImageUrls] = useState<string>("");
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
@@ -76,6 +70,20 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const encodedData = params.get("d");
+      const decodedString = atob(encodedData);
+      const jsonData = JSON.parse(decodedString);
+      if (jsonData.url) {
+        setPreloadedImages([jsonData.url]);
+      }
+    } catch (error) {
+      console.error("Error decoding or parsing JSON:", error);
+    }
+  }, []);
 
   useEffect(() => {
     if (preloadedImages.length > 0) {
