@@ -27,6 +27,17 @@ export class COCOExporter {
         ExporterUtil.saveAs(content, fileName);
     }
 
+    public static returnJson(): {} {
+        const imagesData: ImageData[] = LabelsSelector.getImagesData();
+        const labelNames: LabelName[] = LabelsSelector.getLabelNames();
+        const projectName: string = GeneralSelector.getProjectName();
+        const COCOObject: COCOObject = COCOExporter.mapImagesDataToCOCOObject(imagesData, labelNames, projectName);
+        return COCOObject;
+        // const content: string = JSON.stringify(COCOObject);
+        // const fileName: string = `${ExporterUtil.getExportFileName()}.json`;
+        // ExporterUtil.saveAs(content, fileName);
+    }
+
     private static mapImagesDataToCOCOObject(
         imagesData: ImageData[],
         labelNames: LabelName[],
