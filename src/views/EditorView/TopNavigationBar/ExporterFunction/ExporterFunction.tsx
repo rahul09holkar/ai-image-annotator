@@ -2,6 +2,10 @@ import { connect } from "react-redux";
 import { AppState } from "src/store";
 import { COCOExporter } from "../../../../logic/export/polygon/COCOExporter";
 import { useState } from "react";
+interface ApiResponse {
+  // Define the shape of the response you expect
+  [key: string]: never; // Adjust this to reflect your actual API response structure
+}
 const ExporterFunction: React.FC = () => {
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
@@ -26,26 +30,22 @@ const ExporterFunction: React.FC = () => {
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${token}`);
 
-    const raw = JSON.stringify({
-      image_category: type,
-      image_name: image_name,
-      json_data: notationData,
-    });
-
-    const requestOptions: RequestInit = {
+   
+    const options: RequestInit = {
       method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow" as RequestRedirect,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        image_category: type,
+        image_name: image_name,
+        json_data: notationData,
+      }),
     };
-
-    const response = await (
-      await fetch(
-        "http://api-dev.adonhaircare.com/v1/batch/saveAnnotation",
-        requestOptions
-      )
-    ).json();
-    return response;
+    const response = await fetch("http://api-dev.adonhaircare.com/v1/batch/saveAnnotation", options);
+    const returnResponse: ApiResponse = await response.json();
+    return returnResponse;
   };
 
   const onAccept = async () => {
