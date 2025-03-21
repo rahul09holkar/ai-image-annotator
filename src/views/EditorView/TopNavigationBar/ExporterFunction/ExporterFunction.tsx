@@ -43,7 +43,7 @@ const ExporterFunction: React.FC = () => {
         json_data: notationData,
       }),
     };
-    const response = await fetch("http://api-dev.adonhaircare.com/v1/batch/saveAnnotation", options);
+    const response = await fetch("https://api-dev.adonhaircare.com/v1/batch/saveAnnotation", options);
     const returnResponse: ApiResponse = await response.json();
     return returnResponse;
   };
