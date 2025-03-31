@@ -135,7 +135,7 @@ Please cite Make Sense in your publications if this is useful for your research.
 ```BibTeX
 @MISC{make-sense,
    author = {Piotr Skalski},
-   title = {{Make Sense}},
+   title = {{Image Anotation}},
    howpublished = "\url{https://github.com/SkalskiP/make-sense/}",
    year = {2019},
 }
