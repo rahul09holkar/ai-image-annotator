@@ -14,6 +14,7 @@ import { Settings } from "../../../settings/Settings";
 import { ProjectData } from "../../../store/general/types";
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
 import ExporterFunction from "./ExporterFunction/ExporterFunction";
+import GenerateAnnotation from "./GenerateAnnotation/GenerateAnnotation";
 
 interface IProps {
   updateActivePopupTypeAction: (activePopupType: PopupWindowType) => any;
@@ -60,6 +61,9 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
         </div>
         <div className="NavigationBarGroupWrapper">
           <ExporterFunction />
+        </div>
+        <div className="NavigationBarGroupWrapper">
+          <GenerateAnnotation />
         </div>
         <div className="NavigationBarGroupWrapper middle">
           <div className="ProjectName">Project Name:</div>
