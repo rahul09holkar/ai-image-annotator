@@ -1,4 +1,4 @@
-FROM node:18.13.0 
+FROM 476114130087.dkr.ecr.ap-south-1.amazonaws.com/node:18.13.0 
 
 # Update and install dependencies
 RUN apt-get update && apt-get -y install git python3 python3-pip && rm -rf /var/lib/apt/lists/*
